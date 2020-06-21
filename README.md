@@ -1,4 +1,4 @@
-nflfastR <img src='man/figures/logo.png' align="right" width="25%" />
+**nflfastR** <img src='man/figures/logo.png' align="right" width="25%" />
 ================
 
 <!-- badges: start --> 
