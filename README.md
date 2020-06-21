@@ -8,6 +8,8 @@ date)](https://img.shields.io/github/v/release/mrcaseb/nflfastR?label=latest%20r
 [![Twitter Follow](https://img.shields.io/twitter/follow/nflfastR.svg?style=social)](https://twitter.com/nflfastR)
 <!-- badges: end -->
 
+## Table of Contents
+
   - [Installation](#installation)
   - [Usage](#usage)
       - [Example 1: replicate `nflscrapR` with
