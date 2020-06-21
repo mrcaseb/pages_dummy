@@ -33,6 +33,7 @@ date)](https://img.shields.io/github/v/release/mrcaseb/nflfastR?label=latest%20r
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+## Introduction
 
 `nflfastR` is a set of functions to efficiently scrape NFL play-by-play
 data. `nflfastR` expands upon the features of nflscrapR:
