@@ -146,7 +146,7 @@
 <li>Fix bugs related to NFL providing wrong scoring team on defensive touchdowns in older games involving the Jaguars</li>
 <li>Fix some minor issues related to wrong <code>first_down_rush</code> and <code>return_touchdown</code>
 </li>
-<li>Improved error handling of <code>fastscraper()</code> for not yet played games</li>
+<li>Improved error handling of <code><a href="../reference/fast_scraper.html">fast_scraper()</a></code> for not yet played games</li>
 <li>Improved variable documentation and prepared for new website</li>
 <li>Improved performance for dplyr v1.0.0</li>
 </ul>
@@ -199,8 +199,8 @@
 <h3 class="hasAnchor">
 <a href="#functions" class="anchor"></a>Functions</h3>
 <ul>
-<li><p>Completely overhauled <code>fastcraper()</code> to make it work with the NFL’s new server backend. The option <code>source</code> is still available but will be deprecated since there is only one source now. There are some changes in the output as well (please see below).</p></li>
-<li><p><code>fastcraper()</code> now adds game data to the play by play data set courtesy of Lee Sharpe. Game data include: away_score, home_score, location, result, total, spread_line, total_line, div_game, roof, surface, temp, wind, home_coach, away_coach, stadium, stadium_id, gameday</p></li>
+<li><p>Completely overhauled <code><a href="../reference/fast_scraper.html">fast_scraper()</a></code> to make it work with the NFL’s new server backend. The option <code>source</code> is still available but will be deprecated since there is only one source now. There are some changes in the output as well (please see below).</p></li>
+<li><p><code><a href="../reference/fast_scraper.html">fast_scraper()</a></code> now adds game data to the play by play data set courtesy of Lee Sharpe. Game data include: away_score, home_score, location, result, total, spread_line, total_line, div_game, roof, surface, temp, wind, home_coach, away_coach, stadium, stadium_id, gameday</p></li>
 <li><p><code>fastcraper_schedules()</code> now incorporates Lee Sharpe’s <code>games.rds</code>.</p></li>
 <li><p>The functions <code>fast_scraper_clips()</code> and <code>fast_scraper_roster()</code> are deactivated due to the missing data source. They might be reactivated or completely dropped in future versions.</p></li>
 <li><p>The function <code>fix_fumbles()</code> has been renamed to <code><a href="../reference/add_qb_epa.html">add_qb_epa()</a></code> as the new name much better describes what the function is actually doing.</p></li>
