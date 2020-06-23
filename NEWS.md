@@ -4,7 +4,7 @@
 * Fix bugs related to penalties on PATs and kickoffs
 * Fix bugs related to NFL providing wrong scoring team on defensive touchdowns in older games involving the Jaguars
 * Fix some minor issues related to wrong `first_down_rush` and `return_touchdown`
-* Improved error handling of `fastscraper()` for not yet played games
+* Improved error handling of `fast_scraper()` for not yet played games
 * Improved variable documentation and prepared for new website
 * Improved performance for dplyr v1.0.0
 
@@ -43,11 +43,11 @@ See `data-raw/MODEL-README.md` for detailed model information.
 * Added new function `calculate_expected_points()` usable for the enduser.
 
 ### Functions
-* Completely overhauled `fastcraper()` to make it work with the NFL's new server 
+* Completely overhauled `fast_scraper()` to make it work with the NFL's new server 
 backend. The option `source` is still available but will be deprecated since there
 is only one source now. There are some changes in the output as well (please see below).
 
-* `fastcraper()` now adds game data to the play by play data set courtesy of Lee Sharpe. 
+* `fast_scraper()` now adds game data to the play by play data set courtesy of Lee Sharpe. 
 Game data include:
 away_score, home_score, location, result, total, spread_line, total_line, div_game, 
 roof, surface, temp, wind, home_coach, away_coach, stadium, stadium_id, gameday
