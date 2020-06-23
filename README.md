@@ -26,7 +26,7 @@ data. `nflfastR` expands upon the features of nflscrapR:
     to 1999](https://github.com/guga31bb/nflfastR-data) for very quick
     access
   - Features new and enhanced models for Expected Points, Win
-    Probability, and Completion Probability (see section below)
+    Probability, and Completion Probability (see section below) 
 
 We owe a debt of gratitude to the original
 [`nflscrapR`](https://github.com/maksimhorowitz/nflscrapR) team, Maksim
