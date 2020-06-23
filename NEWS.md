@@ -1,3 +1,13 @@
+# nflfastR 2.0.5
+
+* Fix yet another bug caused by NFL providing plays out of order
+* Fix bugs related to penalties on PATs and kickoffs
+* Fix bugs related to NFL providing wrong scoring team on defensive touchdowns in older games involving the Jaguars
+* Fix some minor issues related to wrong `first_down_rush` and `return_touchdown`
+* Improved error handling of `fastscraper()` for not yet played games
+* Improved variable documentation and prepared for new website
+* Improved performance for dplyr v1.0.0
+
 # nflfastR 2.0.4
 
 * Fix another bug with out of order plays

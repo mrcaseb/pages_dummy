@@ -328,20 +328,6 @@
 #' \item{away_coach}{First and last name of the away team coach. (Source: Pro-Football-Reference)}
 #' \item{stadium_id}{ID of the stadium the game was played in. (Source: Pro-Football-Reference)}
 #' \item{game_stadium}{Name of the stadium the game was played in. (Source: Pro-Football-Reference)}
-#' \item{success}{Binary indicator wheter epa > 0 in the given play. }
-#' \item{passer}{Name of the dropback player (scrambles included) including plays with penalties.}
-#' \item{rusher}{Name of the rusher (no scrambles) including plays with penalties.}
-#' \item{receiver}{Name of the receiver including plays with penalties.}
-#' \item{pass}{Binary indicator if the play was a pass play (sacks and scrambles included).}
-#' \item{rush}{Binary indicator if the play was a rushing play.}
-#' \item{first_down}{Binary indicator if the play ended in a first down.}
-#' \item{play}{Binary indicator: 1 if the play was a 'normal' play (including penalties), 0 otherwise.}
-#' \item{passer_id}{ID of the player in the 'passer' column (NOTE: ids vary pre and post 2011)}
-#' \item{rusher_id}{ID of the player in the 'rusher' column (NOTE: ids vary pre and post 2011)}
-#' \item{receiver_id}{ID of the player in the 'receiver' column (NOTE: ids vary pre and post 2011)}
-#' \item{name}{Name of the 'passer' if it is not 'NA', or name of the 'rusher' otherwise.}
-#' \item{id}{ID of the player in the 'name' column.}
-#' \item{qb_epa}{Gives QB credit for EPA for up to the point where a receiver lost a fumble after a completed catch and makes EPA work more like passing yards on plays with fumbles.}
 #' }
 #' @export
 #' @examples

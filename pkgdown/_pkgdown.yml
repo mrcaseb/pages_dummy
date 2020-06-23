@@ -23,7 +23,7 @@ home:
   title: An R package to quickly obtain clean and tidy NFL play by play data
   links:
   - text: nflfastR beginner's guide
-    href: https://github.com/guga31bb/nflfastR-data/blob/master/man/beginners_guide.md
+    href: https://mrcaseb.github.io/nflfastR/articles/beginners_guide.html
   - text: nflfastR stats landing page
     href: https://rbsdm.com/stats/
   - text: Lee Sharpe's nfl game data
