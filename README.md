@@ -1,5 +1,5 @@
 
-<!-- index.md is generated from index.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # **nflfastR** <img src="man/figures/logo.png" align="right" width="25%" />
 
@@ -26,7 +26,7 @@ data. `nflfastR` expands upon the features of nflscrapR:
     to 1999](https://github.com/guga31bb/nflfastR-data) for very quick
     access
   - Features new and enhanced models for Expected Points, Win
-    Probability, and Completion Probability (see section below) 
+    Probability, and Completion Probability (see section below)
 
 We owe a debt of gratitude to the original
 [`nflscrapR`](https://github.com/maksimhorowitz/nflscrapR) team, Maksim
@@ -49,8 +49,7 @@ devtools::install_github("mrcaseb/nflfastR")
 
 We have provided some application examples under `vignette("examples")`.
 However, these require a basic knowledge of R. For this reason we have
-the **[nflfastR beginner’s
-guide](https://github.com/guga31bb/nflfastR-data/blob/master/man/beginners_guide.md)**,
+the **nflfastR beginner’s guide** in `vignette("beginners_guide")`,
 which we recommend to all those who are looking for an introduction to
 nflfastR with R.
 

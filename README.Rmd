@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-<!-- index.md is generated from index.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -45,7 +45,7 @@ devtools::install_github("mrcaseb/nflfastR")
 
 ## Usage
 
-We have provided some application examples under `vignette("examples")`. However, these require a basic knowledge of R. For this reason we have the **[nflfastR beginner's guide](https://github.com/guga31bb/nflfastR-data/blob/master/man/beginners_guide.md)**, which we recommend to all those who are looking for an introduction to nflfastR with R.
+We have provided some application examples under `vignette("examples")`. However, these require a basic knowledge of R. For this reason we have the **nflfastR beginner's guide** in `vignette("beginners_guide")`, which we recommend to all those who are looking for an introduction to nflfastR with R.
 
 ## Data repository
 
