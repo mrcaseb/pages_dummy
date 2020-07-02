@@ -49,10 +49,13 @@
 <meta property="og:title" content="Compute expected points — calculate_expected_points" />
 <meta property="og:description" content="for provided plays. Returns the data with
 probabilities of each scoring event and EP added. The following columns
-must be present: season, week, home_team, posteam, roof (coded as 'open',
+must be present: season, home_team, posteam, roof (coded as 'open',
 'closed', or 'retractable'), half_seconds_remaining, yardline_100,
 ydstogo, posteam_timeouts_remaining, defteam_timeouts_remaining" />
-<meta property="og:image" content="/logo.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/mrcaseb/nflfastR/master/man/figures/card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@nflfastR" />
+<meta name="twitter:site" content="@nflfastR" />
 
 
 
@@ -84,7 +87,7 @@ ydstogo, posteam_timeouts_remaining, defteam_timeouts_remaining" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nflfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -98,6 +101,9 @@ ydstogo, posteam_timeouts_remaining, defteam_timeouts_remaining" />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -114,12 +120,15 @@ ydstogo, posteam_timeouts_remaining, defteam_timeouts_remaining" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="http://twitter.com/nflfastR">
+    <span class="fab fa fab fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/mrcaseb/nflfastR/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -139,19 +148,19 @@ ydstogo, posteam_timeouts_remaining, defteam_timeouts_remaining" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute expected points</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrcaseb/nflfastR/blob/master/R/ep_calculator.R'><code>R/ep_calculator.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/mrcaseb/nflfastR/blob/master/R/ep_wp_calculators.R'><code>R/ep_wp_calculators.R</code></a></small>
     <div class="hidden name"><code>calculate_expected_points.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>for provided plays. Returns the data with
 probabilities of each scoring event and EP added. The following columns
-must be present: season, week, home_team, posteam, roof (coded as 'open',
+must be present: season, home_team, posteam, roof (coded as 'open',
 'closed', or 'retractable'), half_seconds_remaining, yardline_100,
 ydstogo, posteam_timeouts_remaining, defteam_timeouts_remaining</p>
     </div>
 
-    <pre class="usage"><span class='fu'>calculate_expected_points</span>(<span class='no'>pbp_data</span>)</pre>
+    <pre class="usage"><span class='fu'>calculate_expected_points</span>(<span class='kw'>pbp_data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,7 +173,7 @@ ydstogo, posteam_timeouts_remaining, defteam_timeouts_remaining</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The original pbp_data with the following columns appended to it:</p><dl'>
+    <p>The original pbp_data with the following columns appended to it:</p><dl>
 <dt>ep</dt><dd><p>expected points.</p></dd>
 <dt>no_score_prob</dt><dd><p>probability of no more scoring this half.</p></dd>
 <dt>opp_fg_prob</dt><dd><p>probability next score opponent field goal this half.</p></dd>
@@ -182,12 +191,12 @@ ydstogo, posteam_timeouts_remaining, defteam_timeouts_remaining</p>
 probabilities of each scoring event and EP added. The following columns
 must be present:</p><ul>
 <li><p>season</p></li>
-<li><p>week</p></li>
 <li><p>home_team</p></li>
 <li><p>posteam</p></li>
-<li><p>roof (coded as 'open', 'closed', or 'retractable')</p></li>
+<li><p>roof (coded as 'outdoors', 'dome', or 'open' / 'closed' / NA (retractable))</p></li>
 <li><p>half_seconds_remaining</p></li>
 <li><p>yardline_100</p></li>
+<li><p>down</p></li>
 <li><p>ydstogo</p></li>
 <li><p>posteam_timeouts_remaining</p></li>
 <li><p>defteam_timeouts_remaining</p></li>
@@ -209,7 +218,7 @@ must be present:</p><ul>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

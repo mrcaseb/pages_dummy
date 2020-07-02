@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NFL Team names, colors and logo urls. — teams_colors_logos • nflfastR</title>
+<title>Update or create a nflfastR play by play database — update_db • nflfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="NFL Team names, colors and logo urls. — teams_colors_logos" />
-<meta property="og:description" content="NFL Team names, colors and logo urls." />
+<meta property="og:title" content="Update or create a nflfastR play by play database — update_db" />
+<meta property="og:description" content="update_db Updates a RSQLite database with nflfastR data of all
+completed games since 1999." />
 <meta property="og:image" content="https://raw.githubusercontent.com/mrcaseb/nflfastR/master/man/figures/card.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@nflfastR" />
@@ -143,36 +144,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>NFL Team names, colors and logo urls.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mrcaseb/nflfastR/blob/master/R/data_documentation.R'><code>R/data_documentation.R</code></a></small>
-    <div class="hidden name"><code>teams_colors_logos.Rd</code></div>
+    <h1>Update or create a nflfastR play by play database</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mrcaseb/nflfastR/blob/master/R/helper_database_functions.R'><code>R/helper_database_functions.R</code></a></small>
+    <div class="hidden name"><code>update_db.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>NFL Team names, colors and logo urls.</p>
+    <p><code>update_db</code> Updates a RSQLite database with <code>nflfastR</code> data of all
+completed games since 1999.</p>
     </div>
 
-    <pre class="usage"><span class='kw'>teams_colors_logos</span></pre>
+    <pre class="usage"><span class='fu'>update_db</span>(
+  dbdir = <span class='st'>"."</span>,
+  dbname = <span class='st'>"pbp_db"</span>,
+  tblname = <span class='st'>"nflfastR_pbp"</span>,
+  force_rebuild = <span class='fl'>FALSE</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>dbdir</th>
+      <td><p>Directory in which the database is or shall be located</p></td>
+    </tr>
+    <tr>
+      <th>dbname</th>
+      <td><p>File name of an existing or desired database within dbdir</p></td>
+    </tr>
+    <tr>
+      <th>tblname</th>
+      <td><p>The name of the play by play data table within the database</p></td>
+    </tr>
+    <tr>
+      <th>force_rebuild</th>
+      <td><p>Logical parameter to rebuild the play by play data table
+within the database from scratch in case the cleaned data were updated</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 36 rows and 10 variables containing NFL team level
-information, including franchises in multiple cities:</p><dl>
-  <dt>team_abbr</dt><dd><p>Team abbreviation</p></dd>
-  <dt>team_name</dt><dd><p>Complete Team name</p></dd>
-  <dt>team_id</dt><dd><p>Team id used in the roster function</p></dd>
-  <dt>team_nick</dt><dd><p>Nickname</p></dd>
-  <dt>team_color</dt><dd><p>Primary color</p></dd>
-  <dt>team_color2</dt><dd><p>Secondary color</p></dd>
-  <dt>team_color3</dt><dd><p>Tertiary color</p></dd>
-  <dt>team_color4</dt><dd><p>Quaternary color</p></dd>
-  <dt>team_logo_wikipedia</dt><dd><p>Url to Team logo on wikipedia</p></dd>
-  <dt>team_logo_espn</dt><dd><p>Url to higher quality logo on espn</p></dd>
-
-</dl><p>The colors are taken from Lee Sharpe's teamcolors.csv who has taken them from the
-`teamcolors` package created by Ben Baumer and Gregory Matthews.
-The Wikipeadia logo urls are taken from Lee Sharpe's logos.csv</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
