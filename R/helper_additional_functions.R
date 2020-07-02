@@ -124,7 +124,13 @@ clean_pbp <- function(pbp) {
                     play_type %in% c("no_play","pass","run"),1,0)
     ) %>%
     #standardize team names (eg Chargers are always LAC even when they were playing in SD)
-    dplyr::mutate_at(dplyr::vars(posteam, defteam, home_team, away_team, timeout_team, td_team, return_team, penalty_team), team_name_fn) %>%
+    dplyr::mutate_at(dplyr::vars(
+      posteam, defteam, home_team, away_team, timeout_team, td_team, return_team, penalty_team,
+      side_of_field, forced_fumble_player_1_team, forced_fumble_player_2_team,
+      solo_tackle_1_team, solo_tackle_2_team,
+      assist_tackle_1_team, assist_tackle_2_team, assist_tackle_3_team, assist_tackle_4_team,
+      fumbled_1_team, fumbled_2_team, fumble_recovery_1_team, fumble_recovery_2_team
+      ), team_name_fn) %>%
     #Seb's stuff for fixing player ids
     dplyr::mutate(index = 1 : dplyr::n()) %>% # to re-sort after all the group_bys
 
@@ -193,13 +199,6 @@ team_name_fn <- function(var) {
   )
 }
 
-# custom mode function from https://stackoverflow.com/questions/2547402/is-there-a-built-in-function-for-finding-the-mode/8189441
-custom_mode <- function(x, na.rm = TRUE) {
-  if(na.rm){x = x[!is.na(x)]}
-  ux <- unique(x)
-  return(ux[which.max(tabulate(match(x, ux)))])
-}
-
 #' Compute QB epa
 #'
 #' @param d is a Data frame of play-by-play data scraped using \code{\link{fast_scraper}}.
@@ -210,7 +209,7 @@ custom_mode <- function(x, na.rm = TRUE) {
 add_qb_epa <- function(d) {
 
   fumbles_df <- d %>%
-    dplyr::filter(complete_pass == 1 & fumble_lost == 1 & !is.na(epa)) %>%
+    dplyr::filter(complete_pass == 1 & fumble_lost == 1 & !is.na(epa) & !is.na(down)) %>%
     dplyr::mutate(
       down = as.numeric(down),
       # save old stuff for testing/checking
@@ -229,7 +228,13 @@ add_qb_epa <- function(d) {
       yardline_100 = dplyr::if_else(change == 1, 100 - yardline_100, yardline_100),
       ep_old = ep
     ) %>%
-    dplyr::select(-ep, -epa)
+    dplyr::select(
+      game_id, play_id,
+      season, home_team, posteam, roof, half_seconds_remaining,
+      yardline_100, down, ydstogo,
+      posteam_timeouts_remaining, defteam_timeouts_remaining,
+      down_old, ep_old, change
+      )
 
   if (nrow(fumbles_df) > 0) {
     new_ep_df <- calculate_expected_points(fumbles_df) %>%

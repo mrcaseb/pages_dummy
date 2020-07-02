@@ -2,9 +2,11 @@
 
 export(add_qb_epa)
 export(calculate_expected_points)
+export(calculate_win_probability)
 export(clean_pbp)
 export(fast_scraper)
 export(fast_scraper_schedules)
+export(update_db)
 importFrom(dplyr,filter)
 importFrom(dplyr,if_else)
 importFrom(magrittr,"%>%")

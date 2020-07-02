@@ -4,7 +4,7 @@
 \alias{fast_scraper}
 \title{Get NFL Play by Play Data}
 \usage{
-fast_scraper(game_ids, source = "nfl", pp = FALSE)
+fast_scraper(game_ids, source = "nfl", pp = FALSE, ...)
 }
 \arguments{
 \item{game_ids}{Vector of character ids (see details for further information)}
@@ -12,6 +12,8 @@ fast_scraper(game_ids, source = "nfl", pp = FALSE)
 \item{source}{Character - must now be \code{nfl} or unspecified (see details for further information)}
 
 \item{pp}{Logical - either \code{TRUE} or \code{FALSE} (see details for further information)}
+
+\item{...}{Additional arguments passed to the scraping functions (for internal use)}
 }
 \value{
 Data frame where each individual row represents a single play for
@@ -46,7 +48,7 @@ detailed information (description partly extracted from nflscrapR):
 \item{ydsnet}{Numeric value for total yards gained on the given drive.}
 \item{desc}{Detailed string description for the given play.}
 \item{play_type}{String indicating the type of play: pass (includes sacks), run (includes scrambles), punt, field_goal, kickoff, extra_point, qb_kneel, qb_spike, no_play (timeouts and penalties), and missing for rows indicating end of play.}
-\item{yards_gained}{Numeric yards gained (or lost) for the given play.}
+\item{yards_gained}{Numeric yards gained (or lost) by the possessing team, excluding yards gained via fumble recoveries and laterals.}
 \item{shotgun}{Binary indicator for whether or not the play was in shotgun formation.}
 \item{no_huddle}{Binary indicator for whether or not the play was in no_huddle formation.}
 \item{qb_dropback}{Binary indicator for whether or not the QB dropped back on the play (pass attempt, sack, or scrambled).}

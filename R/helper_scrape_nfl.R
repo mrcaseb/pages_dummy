@@ -8,7 +8,7 @@
 #
 # @param id Specifies the game
 
-get_pbp_nfl <- function(id) {
+get_pbp_nfl <- function(id, dir = NULL) {
   combined <- data.frame()
   tryCatch(
     expr = {
@@ -21,7 +21,8 @@ get_pbp_nfl <- function(id) {
       season <- substr(id, 1, 4)
       week <- as.integer(substr(id, 6, 7))
 
-      path <- "https://github.com/guga31bb/nflfastR-data/raw/master/raw"
+      if (is.null(dir)) {
+      path <- "https://raw.githubusercontent.com/guga31bb/nflfastR-raw/master/raw"
 
       request <- httr::HEAD(glue::glue("{path}/{season}/{id}.rds"))
 
@@ -34,6 +35,16 @@ get_pbp_nfl <- function(id) {
       }
 
       raw_data <- readRDS(url(glue::glue("{path}/{season}/{id}.rds")))
+
+      } else {
+        # build path to locally stored game files. This functionality is primarily
+        # for the data repo maintainer
+        p <- glue::glue("{dir}/{season}/{id}.rds")
+        if (file.exists(p) == FALSE) {
+          warning(warn <- 4)
+        }
+        raw_data <- readRDS(p)
+      }
 
       season_type <- dplyr::if_else(week <= 17, "REG", "POST")
 
@@ -54,16 +65,14 @@ get_pbp_nfl <- function(id) {
       )
       start_time <- raw_data$data$viewer$gameDetail$startTime
 
-      game_info <- data.frame(
-        game_id,
+      game_info <- tibble::tibble(
+        game_id = as.character(game_id),
         home_team,
         away_team,
         weather,
         stadium,
         start_time
-      ) %>%
-        tibble::as_tibble() %>%
-        dplyr::mutate(game_id = as.character(game_id))
+      )
 
       plays <- raw_data$data$viewer$gameDetail$plays %>% dplyr::mutate(game_id = as.character(game_id))
 
@@ -161,7 +170,7 @@ get_pbp_nfl <- function(id) {
           season = as.integer(season),
           # this is only needed for epa and dropped later
           game_month = as.integer(11),
-          game_id = as.character(glue::glue('{season}_{formatC(week, width=2, flag=\"0\")}_{away_team}_{home_team}')),
+          game_id = id,
           play_description = play_description_with_jersey_numbers,
           week = week,
           season_type = season_type,
@@ -198,23 +207,19 @@ get_pbp_nfl <- function(id) {
             id == '2012_04_NO_GB' & play_id == 1085 ~ 4,
             id == '2012_16_BUF_MIA' & play_id == 2571 ~ 15,
             id == '2015_16_CHI_TB' & play_id == 2182 ~ 14,
+            id == '2019_12_IND_HOU' & play_id == 2579 ~ 12,
+            id == '2019_12_IND_HOU' & play_id == 2544 ~ 11,
             TRUE ~ drive
           ),
           time = dplyr::case_when(
             id == '2012_04_NO_GB' & play_id == 1085 ~ '3:34',
             id == '2012_16_BUF_MIA' & play_id == 2571 ~ '8:31',
             TRUE ~ time
-          )
+          ),
+          drive_real_start_time = as.character(drive_real_start_time)
         ) %>%
         dplyr::mutate_all(dplyr::na_if, "")
 
-      # combined <-
-      #   combined %>%
-      #   dplyr::select(
-      #     tidyselect::one_of(
-      #       c(pbp_stat_columns, api_cols, save_cols)
-      #     )
-      #   )
     },
     error = function(e) {
       message("The following error has occured:")
@@ -227,6 +232,8 @@ get_pbp_nfl <- function(id) {
         message(glue::glue("Warning: The data hosting servers are down, please try again later!"))
       } else if (warn == 3) {
         message(glue::glue("Warning: The requested GameID {id} is not loaded yet, please try again later!"))
+      } else if (warn == 4) {
+        message(glue::glue("Warning: Either the requested GameID {id} is missing or you've passed an invalid path!"))
       } else {
         message("The following warning has occured:")
         message(w)

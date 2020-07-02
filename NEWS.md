@@ -1,12 +1,34 @@
+# nflfastR 2.1.0
+
+* Remove week from EP models
+* Add function `update_db()` which adds all completed games to a SQLite database
+* Add `calculate_win_probability()` function along with new example in `vignette("examples")`
+
+# nflfastR 2.0.6
+
+* Fixed a problem where defensive two point conversions were not counted
+* Kneels on kickoffs are no longer counted as qb kneels
+* Variable `yards_gained` more precisely defined
+* Bugfixes for more games with out of order of plays
+* Fix bug related to EPA on plays with a failed pass interference challenge
+* Added new example to `vignette("examples")` to demonstrate Expected Points 
+calculator `calculate_expected_points()`
+* Fix for WP on 2-pt conversion negated by penalty
+* Add more variables (containing team names) to team standardization in `clean_pbp()`
+* Fix WP for onside kicks
+
 # nflfastR 2.0.5
 
 * Fix yet another bug caused by NFL providing plays out of order
 * Fix bugs related to penalties on PATs and kickoffs
-* Fix bugs related to NFL providing wrong scoring team on defensive touchdowns in older games involving the Jaguars
+* Fix bugs related to NFL providing wrong scoring team on defensive touchdowns 
+in older games involving the Jaguars
 * Fix some minor issues related to wrong `first_down_rush` and `return_touchdown`
 * Improved error handling of `fast_scraper()` for not yet played games
 * Improved variable documentation and prepared for new website
 * Improved performance for dplyr v1.0.0
+* Rebuilt EP and WP models due to bugfixes in the underlying data in the versions
+2.0.3, 2.0.4 and 2.0.5
 
 # nflfastR 2.0.4
 

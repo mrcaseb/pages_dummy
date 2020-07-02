@@ -63,7 +63,7 @@ prepare_cp_data <- function(pbp) {
     dplyr::select(
       complete_pass, air_yards, yardline_100, ydstogo,
                   down1, down2, down3, down4, air_is_zero, pass_middle,
-                  era2, era3, era4, qb_hit, home, model_week,
+                  era2, era3, era4, qb_hit, home,
                   outdoors, retractable, dome, distance_to_sticks, valid_pass
       )
 

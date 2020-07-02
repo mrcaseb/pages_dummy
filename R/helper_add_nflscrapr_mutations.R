@@ -50,7 +50,7 @@ add_nflscrapr_mutations <- function(pbp) {
       # Make the possession team for kickoffs be the return team, since that is
       # more intuitive from the EPA / WPA point of view:
       posteam = dplyr::if_else(
-        kickoff_attempt == 1,
+        kickoff_attempt == 1 | stringr::str_detect(play_description, "Offside on Free Kick"),
         dplyr::if_else(
           posteam_type == "home",
           away_team, home_team
@@ -58,7 +58,7 @@ add_nflscrapr_mutations <- function(pbp) {
         posteam
       ),
       defteam = dplyr::if_else(
-        kickoff_attempt == 1,
+        kickoff_attempt == 1 | stringr::str_detect(play_description, "Offside on Free Kick"),
         dplyr::if_else(
           posteam_type == "home",
           home_team, away_team
@@ -67,7 +67,7 @@ add_nflscrapr_mutations <- function(pbp) {
       ),
       # Now flip the posteam_type as well:
       posteam_type = dplyr::if_else(
-        kickoff_attempt == 1,
+        kickoff_attempt == 1 | stringr::str_detect(play_description, "Offside on Free Kick"),
         dplyr::if_else(
           posteam_type == "home",
           "away", "home"
@@ -230,7 +230,7 @@ add_nflscrapr_mutations <- function(pbp) {
       ),
       # Indicator columns for both QB kneels, spikes, scrambles,
       # no huddle, shotgun plays:
-      qb_kneel = stringr::str_detect(play_description, " kneels ") %>% as.numeric(),
+      qb_kneel = dplyr::if_else(stringr::str_detect(play_description, " kneels ") & kickoff_attempt != 1, 1, 0),
       qb_spike = stringr::str_detect(play_description, " spiked ") %>% as.numeric(),
       qb_scramble = stringr::str_detect(play_description, " scrambles ") %>% as.numeric(),
       shotgun = stringr::str_detect(play_description, "Shotgun") %>% as.numeric(),
@@ -419,7 +419,7 @@ add_nflscrapr_mutations <- function(pbp) {
       ),
       home_points_scored = dplyr::if_else(
         defteam == home_team &
-          (safety == 1 | two_point_return == 1),
+          (safety == 1 | two_point_return == 1 | defensive_two_point_conv == 1),
         2, home_points_scored
       ),
       away_points_scored = dplyr::if_else(
@@ -449,7 +449,7 @@ add_nflscrapr_mutations <- function(pbp) {
       ),
       away_points_scored = dplyr::if_else(
         defteam == away_team &
-          (safety == 1 | two_point_return == 1),
+          (safety == 1 | two_point_return == 1 | defensive_two_point_conv == 1),
         2, away_points_scored
       ),
       home_points_scored = dplyr::if_else(
@@ -504,7 +504,7 @@ add_nflscrapr_mutations <- function(pbp) {
       qtr = quarter
     ) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(game_id = as.character(game_id), drive_real_start_time = as.character(drive_real_start_time)) %>%
+    dplyr::mutate(game_id = as.character(game_id)) %>%
     make_model_mutations()
 
 
@@ -532,8 +532,6 @@ make_model_mutations <- function(pbp) {
         era3 | era4 == 1 ~ 3
       ),
       era = as.factor(era),
-      #treat playoff games as week 17 as they aren't used for training
-      model_week = dplyr::if_else(week > 17, as.integer(17), as.integer(week)),
       down1 = dplyr::if_else(down == 1, 1, 0),
       down2 = dplyr::if_else(down == 2, 1, 0),
       down3 = dplyr::if_else(down == 3, 1, 0),
